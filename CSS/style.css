@@ -1,0 +1,37 @@
+body{
+    background-color: black;
+}
+
+.dice > img{
+    display: block;
+}
+
+.dice{
+    min-width: 100px;
+    cursor: pointer;
+    box-sizing: border-box;
+}
+
+.dice.locked{
+    border: 5px solid red;
+}
+
+.dice-container{
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.controls {
+    display: flex;
+    justify-content: center;
+    margin-top: 1em;
+}
+
+.controls #rollBtn {
+    font-size: 2em;
+    background-color: black;
+    color: white;
+    border: 3px solid white;
+    border-radius: 10px;
+}
