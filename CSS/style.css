@@ -35,3 +35,9 @@ body{
     border: 3px solid white;
     border-radius: 10px;
 }
+
+.controls #rollBtn:hover {
+    background-color: rgb(27, 27, 27);
+    color: rgb(214, 214, 214);
+    border: 3px solid rgb(214, 214, 214);
+}

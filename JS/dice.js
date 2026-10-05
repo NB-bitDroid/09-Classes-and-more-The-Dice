@@ -56,8 +56,8 @@ class Dice{
             }, 50);
             setTimeout(()=>{
                 clearInterval(roller);
-                resolve()
+                resolve();
             }, 1000);
         });
-    }
+    };
  };

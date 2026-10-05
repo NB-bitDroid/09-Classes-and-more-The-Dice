@@ -17,7 +17,7 @@
                 <div class="dice"></div>
             </div>
             <div class="controls">
-                <button id="rollBtn" onclick="rollDice()" >Roll</button>
+                <button id="rollBtn" onclick="rollDice()">Roll</button>
             </div>
         </div>
         <script>
@@ -37,14 +37,14 @@
             // }
 
             async function rollDice(){
-                let rolls = []
+                let rolls = [];
                 for(let d of dice){
-                    rolls.push(d.roll()) // rolls is an array of promises
-                }
+                    rolls.push(d.roll()); // rolls is an array of promises
+                };
                 // await - requires being run in an async environment 
                 await Promise.all(rolls); //stop executiong until all promises are complete
                 console.log(calcuateDiceTotal());
-            }
+            };
 
             function calcuateDiceTotal() {
                 let total = 0;
@@ -52,7 +52,7 @@
                     total += d.value;
                 });
                 return total;
-            }
+            };
         </script>
     </body>
 </html>
