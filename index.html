@@ -4,7 +4,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="./CSS/style.css">
-        <script src="/JS/dice.js"></script>
+        <script src="/JS/dice.js" defer></script>
         <title>Dice</title>
     </head>
     <body>
@@ -20,39 +20,5 @@
                 <button id="rollBtn" onclick="rollDice()">Roll</button>
             </div>
         </div>
-        <script>
-            const diceContainers = document.querySelectorAll(".dice"); //should use getElementsByclass?
-            let dice = [];
-            diceContainers.forEach((di, idx)=>{
-                //di is the current html element in the array
-                //idx is the index of the array
-                dice.push(new Dice(di));
-            });
-
-            // function rollDice(){
-            //     dice.forEach((d) => {
-            //         d.roll();
-            //     });
-            //     console.log(calcuateDiceTotal());
-            // }
-
-            async function rollDice(){
-                let rolls = [];
-                for(let d of dice){
-                    rolls.push(d.roll()); // rolls is an array of promises
-                };
-                // await - requires being run in an async environment 
-                await Promise.all(rolls); //stop executiong until all promises are complete
-                console.log(calcuateDiceTotal());
-            };
-
-            function calcuateDiceTotal() {
-                let total = 0;
-                dice.forEach((d) => {
-                    total += d.value;
-                });
-                return total;
-            };
-        </script>
     </body>
 </html>
