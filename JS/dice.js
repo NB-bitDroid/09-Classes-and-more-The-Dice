@@ -1,4 +1,6 @@
 const diceContainers = document.querySelectorAll(".dice");
+let score = document.getElementById("score");
+let rollnum = 0
 let dice = [];
 
 
@@ -80,12 +82,56 @@ async function rollDice(){
     // await - requires being run in an async environment 
     await Promise.all(rolls); //stop executiong until all promises are complete
     console.log(calcuateDiceTotal());
+    updateScore()
 };
 
 function calcuateDiceTotal() {
     let total = 0;
+    let num2 = [];
+    let num3 = [];
+    let num4 = [];
+    let num6 = [];
+    // if (dice[num]._value != 5 || dice[num]._value != 1) {
+    //     if (dice[num]._value == dice[num+1]._value & dice[num+1]._value == dice[num+2]._value) {
+    //         total += dice[num]._value;
+    //         console.log(total);
+    //     };
+    // }
     dice.forEach((d) => {
-        total += d.value;
+        if (d.value == 1) {
+            total += d.value;
+        }if (d.value == 5) {
+            total += d.value
+        }if (d.value == 2) {
+            num2 += d.value
+        }
+        if (d.value == 3) {
+            num3 += d.value
+        }
+        if (d.value == 4) {
+            num4 += d.value
+        }
+        if (d.value == 6) {
+            num6 += d.value
+        }
+
     });
+    if (num6.length == 3) {
+        total +=6
+    }
+    if (num2.length == 3) {
+        total +=2
+    }
+    if (num3.length == 3) {
+        total +=3
+    }
+    if (num4.length == 3) {
+        total +=4
+    }
     return total;
 };
+
+function updateScore() {
+    rollnum += calcuateDiceTotal();
+    score.textContent = rollnum
+}
