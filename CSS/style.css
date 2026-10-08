@@ -2,6 +2,13 @@ body{
     background-color: black;
 }
 
+h1 {
+    color: white;
+    text-align: center;
+    font-size: 6em;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif
+}
+
 .dice > img{
     display: block;
 }

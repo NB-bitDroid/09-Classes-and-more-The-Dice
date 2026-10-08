@@ -87,133 +87,52 @@ async function rollDice(){
 
 function calcuateDiceTotal() {
     let total = 0;
-    let num1 = [];
-    let num2 = [];
-    let num3 = [];
-    let num4 = [];
-    let num5 = [];
-    let num6 = [];
+    let counts = [0,0,0,0,0,0,0]
+    //this should only run on dice last rolled
     dice.forEach((d) => {
-        if (d.value == 1) {
-            num1 += d.value
-        }
-        if (d.value == 2) {
-            num2 += d.value
-        }
-        if (d.value == 3) {
-            num3 += d.value
-        }
-        if (d.value == 4) {
-            num4 += d.value
-        }
-        if (d.value == 5) {
-            num5 += d.value
-        }
-        if (d.value == 6) {
-            num6 += d.value
-        }
+        counts[d.value] += 1;
     });
-    if (dice[0].value == 1 && dice[1].value == 2 && dice[2].value == 3 && dice[3].value == 4 && dice[4].value == 5 && dice[5].value == 6) {
-        total += 1500;
-    };
-    if (num1.length < 6) {
-        if (num1.length < 5) {
-            if (num1.length < 4) {
-                if (num1.length <= 2) {
-                    total += (num1.length * 100);
-                }if (num1.length == 3) {
-                    total += 300;
-                };
-            }if (num1.length == 4) {
-                total += 1000
-            };
-        }if (num1.length == 5) {
-            total += 2000
-        };
-    }if (num1.length == 6) {
-        total += 3000
-    };
-    if (num2.length < 6) {
-        if (num2.length < 5) {
-            if (num2.length < 4) {
-                if (num2.length == 3) {
-                    total += 200;
-                };
-            }if (num2.length == 4) {
-                total += 1000
-            };
-        }if (num2.length == 5) {
-            total += 2000
-        };
-    }if (num2.length == 6) {
-        total += 3000
-    };
-    if (num3.length < 6) {
-        if (num3.length < 5) {
-            if (num3.length < 4) {
-                if (num3.length == 3) {
-                    total += 300;
-                };
-            }if (num3.length == 4) {
-                total += 1000
-            };
-        }if (num3.length == 5) {
-            total += 2000
-        };
-    }if (num3.length == 6) {
-        total += 3000
-    };
-    if (num4.length < 6) {
-        if (num4.length < 5) {
-            if (num4.length < 4) {
-                if (num4.length == 3) {
-                    total += 400;
-                };
-            }if (num4.length == 4) {
-                total += 1000
-            };
-        }if (num4.length == 5) {
-            total += 2000
-        };
-    }if (num4.length == 6) {
-        total += 3000
-    };
-    if (num5.length < 6) {
-        if (num5.length < 5) {
-            if (num5.length < 4) {
-                if (num5.length <= 2) {
-                    total += (num5.length * 50);
-                }if (num5.length == 3) {
-                    total += 500;
-                };
-            }if (num5.length == 4) {
-                total += 1000
-            };
-        }if (num5.length == 5) {
-            total += 2000
-        };
-    }if (num5.length == 6) {
-        total += 3000
-    };
-    if (num6.length < 6) {
-        if (num6.length < 5) {
-            if (num6.length < 4) {
-                if (num6.length == 3) {
-                    total += 600;
-                };
-            }if (num6.length == 4) {
-                total += 1000
-            };
-        }if (num6.length == 5) {
-            total += 2000
-        };
-    }if (num6.length == 6) {
-        total += 3000
-    };
-    return total;
-};
 
-function updateScore() {
-    rollnum += calcuateDiceTotal();
-    score.textContent = rollnum
+    let foundStraight = checkForStraight(counts);
+    if(foundStraight)
+        total+= 1500;
+    // if (dice[0].value == 1 && dice[1].value == 2 && dice[2].value == 3 && dice[3].value == 4 && dice[4].value == 5 && dice[5].value == 6) {
+    //     total += 1500;
+    // };
+    let threeOfAKindScore = getThreeOfAKindScore(counts)
+    
 }
+
+function checkForStraight(counts){
+    for(let i = 1; i < counts.length; i++){
+        if(counts[i] != 1){
+            return false;
+        }else{
+            diceCounted +=1
+        }
+    }
+    return true;
+}
+
+//let fourOfAKind = getMatchingDiceScore(counts, 4)
+//let fiveOfAKind = getMatchingDiceScore(counts, 5)
+//let sixOfAKind = getMatchingDiceScore(counts, 6)
+function getMatchingDiceScore(counts, count){
+    for(let i = 1; i < counts.length; i++){
+        if(counts[i] == count){
+            return true;
+        }
+    }
+    return false;
+}
+
+function getThreeOfAKindScore(counts){
+    let score = 0;
+    for(let i = 1; i < counts.length; i++){
+        if(counts[i] == 3){
+            score += counts[i] *  100;
+        }
+    }
+    return score;
+}
+
